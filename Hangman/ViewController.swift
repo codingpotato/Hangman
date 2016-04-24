@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         triesLabel.text = "\(hangman.tries)"
         lengthLabel.text = "\(hangman.word.characters.count)"
         usedLabel.text = "\(hangman.used)"
+        wordLabel.text = "\(hangman.guessingWord)"
     }
 
     override func didReceiveMemoryWarning() {

@@ -11,26 +11,34 @@ import XCTest
 
 class HangmanTests: XCTestCase {
     
+    let EXPECTED_WORD = "Test Word"
+    
+    var hangman: Hangman!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        hangman = Hangman(word: EXPECTED_WORD)
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testTriesAfterInit() {
+        XCTAssertEqual(12, hangman.tries)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func testUsedAfterInit() {
+        XCTAssertEqual("AEIOU", hangman.used)
+    }
+    
+    func testWordAfterInit() {
+        XCTAssertEqual(EXPECTED_WORD, hangman.word)
+    }
+    
+    func testGuessingWordAfterInit() {
+        XCTAssertEqual("-e-- -o--", hangman.guessingWord)
     }
     
 }
