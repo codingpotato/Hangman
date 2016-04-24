@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		FC5393CA1CCC436C009A13AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5393C91CCC436C009A13AA /* AppDelegate.swift */; };
 		FC5393CC1CCC436C009A13AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5393CB1CCC436C009A13AA /* ViewController.swift */; };
-		FC5393CF1CCC436C009A13AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5393CD1CCC436C009A13AA /* Main.storyboard */; };
 		FC5393D11CCC436C009A13AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC5393D01CCC436C009A13AA /* Assets.xcassets */; };
 		FC5393D41CCC436C009A13AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5393D21CCC436C009A13AA /* LaunchScreen.storyboard */; };
 		FC5393DF1CCC436C009A13AA /* HangmanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5393DE1CCC436C009A13AA /* HangmanTests.swift */; };
 		FC5393EA1CCC436C009A13AA /* HangmanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5393E91CCC436C009A13AA /* HangmanUITests.swift */; };
+		FC5393F81CCC4495009A13AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5393F71CCC4495009A13AA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 		FC5393C61CCC436C009A13AA /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5393C91CCC436C009A13AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5393CB1CCC436C009A13AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FC5393CE1CCC436C009A13AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC5393D01CCC436C009A13AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC5393D31CCC436C009A13AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC5393D51CCC436C009A13AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		FC5393E51CCC436C009A13AA /* HangmanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangmanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5393E91CCC436C009A13AA /* HangmanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanUITests.swift; sourceTree = "<group>"; };
 		FC5393EB1CCC436C009A13AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC5393F71CCC4495009A13AA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +97,12 @@
 		FC5393C81CCC436C009A13AA /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				FC5393D51CCC436C009A13AA /* Info.plist */,
+				FC5393F71CCC4495009A13AA /* Main.storyboard */,
 				FC5393C91CCC436C009A13AA /* AppDelegate.swift */,
 				FC5393CB1CCC436C009A13AA /* ViewController.swift */,
-				FC5393CD1CCC436C009A13AA /* Main.storyboard */,
 				FC5393D01CCC436C009A13AA /* Assets.xcassets */,
 				FC5393D21CCC436C009A13AA /* LaunchScreen.storyboard */,
-				FC5393D51CCC436C009A13AA /* Info.plist */,
 			);
 			path = Hangman;
 			sourceTree = "<group>";
@@ -229,9 +229,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5393F81CCC4495009A13AA /* Main.storyboard in Resources */,
 				FC5393D41CCC436C009A13AA /* LaunchScreen.storyboard in Resources */,
 				FC5393D11CCC436C009A13AA /* Assets.xcassets in Resources */,
-				FC5393CF1CCC436C009A13AA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FC5393CD1CCC436C009A13AA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC5393CE1CCC436C009A13AA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FC5393D21CCC436C009A13AA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -405,6 +397,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codingpotato.Hangman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -416,6 +409,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codingpotato.Hangman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -484,6 +478,7 @@
 				FC5393F01CCC436C009A13AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC5393F11CCC436C009A13AA /* Build configuration list for PBXNativeTarget "HangmanTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +487,7 @@
 				FC5393F31CCC436C009A13AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC5393F41CCC436C009A13AA /* Build configuration list for PBXNativeTarget "HangmanUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +496,7 @@
 				FC5393F61CCC436C009A13AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
