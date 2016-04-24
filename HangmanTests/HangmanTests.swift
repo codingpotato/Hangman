@@ -46,4 +46,9 @@ class HangmanTests: XCTestCase {
         XCTAssertEqual(11, hangman.tries)
     }
     
+    func testTypeCorrectCharacter() {
+        hangman.typeCharacter("T")
+        XCTAssertEqual("TE-T -O--", hangman.guessingWord)
+    }
+    
 }

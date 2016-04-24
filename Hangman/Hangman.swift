@@ -31,6 +31,15 @@ class Hangman {
     func typeCharacter(character: Character) {
         if isCharacterInUsed(character) {
             tries -= 1
+        } else {
+            let wordCharacters = Array(word.characters)
+            var guessingWordCharacters = Array(guessingWord.characters)
+            for (index, char) in wordCharacters.enumerate() {
+                if char == character {
+                    guessingWordCharacters[index] = character
+                }
+            }
+            guessingWord = String(guessingWordCharacters)
         }
     }
     

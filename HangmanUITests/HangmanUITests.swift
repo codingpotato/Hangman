@@ -10,6 +10,14 @@ import XCTest
 
 class HangmanUITests: XCTestCase {
     
+    let triesLabelName = "triesLabel"
+    let lengthLabelName = "lengthLabel"
+    let usedLabelName = "usedLabel"
+    let wordLabelName = "wordLabel"
+    let allVowel = "AEIOU"
+    
+    let maxTries = 12
+    
     let app = XCUIApplication()
         
     override func setUp() {
@@ -25,24 +33,29 @@ class HangmanUITests: XCTestCase {
     }
     
     func testTriesAfterStart() {
-        XCTAssertEqual("12", app.staticTexts["triesLabel"].label)
+        XCTAssertEqual("\(maxTries)", app.staticTexts[triesLabelName].label)
     }
     
     func testLengthAfterStart() {
-        XCTAssertEqual("11", app.staticTexts["lengthLabel"].label)
+        XCTAssertEqual("\(maxTries - 1)", app.staticTexts[lengthLabelName].label)
     }
     
     func testUsedAfterStart() {
-        XCTAssertEqual("AEIOU", app.staticTexts["usedLabel"].label)
+        XCTAssertEqual(allVowel, app.staticTexts[usedLabelName].label)
     }
     
     func testWordAfterStart() {
-        XCTAssertEqual("-E--O -O---", app.staticTexts["wordLabel"].label)
+        XCTAssertEqual("-E--O -O---", app.staticTexts[wordLabelName].label)
     }
     
     func testTypeUsedCharacter() {
         app.buttons["A"].tap()
-        XCTAssertEqual("11", app.staticTexts["triesLabel"].label)
+        XCTAssertEqual("\(maxTries - 1)", app.staticTexts[triesLabelName].label)
+    }
+    
+    func testTypeCorrectCharacter() {
+        app.buttons["L"].tap()
+        XCTAssertEqual("-ELLO -O-L-", app.staticTexts[wordLabelName].label)
     }
     
 }
