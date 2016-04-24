@@ -11,5 +11,10 @@ import Foundation
 class Hangman {
     
     var tries = 12
+    var word = ""
+    
+    init(word: String) {
+        self.word = word
+    }
     
 }

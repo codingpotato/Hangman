@@ -16,7 +16,8 @@ class HangmanUITests: XCTestCase {
         super.setUp()
         
         continueAfterFailure = false
-        XCUIApplication().launch()
+        app.launchEnvironment["UITestWord"] = "Hello World"
+        app.launch()
     }
     
     override func tearDown() {
@@ -24,8 +25,11 @@ class HangmanUITests: XCTestCase {
     }
     
     func testTriesAfterStart() {
-        let triesLabel = app.staticTexts["triesLabel"]
-        XCTAssertEqual("12", triesLabel.label)
+        XCTAssertEqual("12", app.staticTexts["triesLabel"].label)
+    }
+    
+    func testLengthAfterStart() {
+        XCTAssertEqual("11", app.staticTexts["lengthLabel"].label)
     }
     
 }

@@ -15,12 +15,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var usedLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
     
-    private let hangman = Hangman()
+    private var hangman: Hangman!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let word = NSProcessInfo.processInfo().environment["UITestWord"] {
+            hangman = Hangman(word: word)
+        } else {
+            hangman = Hangman(word: "Guess this word")
+        }
         triesLabel.text = "\(hangman.tries)"
+        lengthLabel.text = "\(hangman.word.characters.count)"
     }
 
     override func didReceiveMemoryWarning() {
