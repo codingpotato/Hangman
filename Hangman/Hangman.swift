@@ -10,6 +10,14 @@ import Foundation
 
 class Hangman {
     
+    var won: Bool {
+        return word == guessingWord
+    }
+    
+    var lose: Bool {
+        return tries == 0
+    }
+    
     var tries = 12
     var used = "AEIOU"
 
@@ -29,6 +37,8 @@ class Hangman {
     }
     
     func typeCharacter(character: Character) {
+        guard !won && !lose else { return }
+        
         if isCharacterUsed(character) {
             tries -= 1
         } else {

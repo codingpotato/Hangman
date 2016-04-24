@@ -15,6 +15,7 @@ class HangmanUITests: XCTestCase {
     let usedLabelName = "usedLabel"
     let wordLabelName = "wordLabel"
     let allVowel = "AEIOU"
+    let word = "HELLO WORLD"
     
     let maxTries = 12
     
@@ -24,7 +25,7 @@ class HangmanUITests: XCTestCase {
         super.setUp()
         
         continueAfterFailure = false
-        app.launchEnvironment["UITestWord"] = "HELLO WORLD"
+        app.launchEnvironment["UITestWord"] = word
         app.launch()
     }
     
@@ -63,6 +64,15 @@ class HangmanUITests: XCTestCase {
         app.buttons[incorrectCharacter].tap()
         XCTAssertEqual("\(maxTries - 1)", app.staticTexts[triesLabelName].label)
         XCTAssertEqual(allVowel + incorrectCharacter, app.staticTexts[usedLabelName].label)
+    }
+    
+    func testWin() {
+        app.buttons["H"].tap()
+        app.buttons["L"].tap()
+        app.buttons["W"].tap()
+        app.buttons["R"].tap()
+        app.buttons["D"].tap()
+        XCTAssertEqual(word, app.staticTexts[wordLabelName].label)
     }
     
 }

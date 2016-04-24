@@ -60,4 +60,20 @@ class HangmanTests: XCTestCase {
         XCTAssertEqual(allVowel + incorrectCharacter, hangman.used)
     }
     
+    func testWin() {
+        hangman.typeCharacter("T")
+        hangman.typeCharacter("S")
+        hangman.typeCharacter("W")
+        hangman.typeCharacter("R")
+        hangman.typeCharacter("D")
+        XCTAssert(hangman.won)
+    }
+    
+    func testLose() {
+        for _ in 0..<maxTries {
+            hangman.typeCharacter("M")
+        }
+        XCTAssert(hangman.lose)
+    }
+    
 }
