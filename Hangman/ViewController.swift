@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
 
     private var words = [
-        "GUESS", "METHODOLOGY", "WORLD", "VARIOUS", "SPANISH", "GENERATOR"
+        "GUESS", "METHODOLOGY", "WORLD", "VARIOUS", "SPANISH", "GENERATOR",
+        "HELLO WORLD", "WRITE", "EASY", "LENGTH", "LINE", "STATUS"
     ]
     private var hangman: Hangman!
     
