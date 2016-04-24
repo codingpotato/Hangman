@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     private func updateLabels() {
         triesLabel.text = "\(hangman.tries)"
         lengthLabel.text = "\(hangman.word.characters.count)"
-        usedLabel.text = "\(hangman.used)"
+        usedLabel.text = "\(hangman.usedCharacters)"
         wordLabel.text = "\(hangman.guessingWord)"
     }
     

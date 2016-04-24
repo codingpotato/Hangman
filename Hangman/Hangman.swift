@@ -10,6 +10,9 @@ import Foundation
 
 class Hangman {
     
+    let hiddenCharacter = "-"
+    let space: Character = " "
+    
     var won: Bool {
         return word == guessingWord
     }
@@ -19,7 +22,7 @@ class Hangman {
     }
     
     var tries = 12
-    var used = "AEIOU"
+    var usedCharacters = "AEIOU"
 
     var word: String
     var guessingWord: String
@@ -27,13 +30,7 @@ class Hangman {
     init(word: String) {
         self.word = word
         guessingWord = ""
-        for character in word.characters {
-            if isCharacterUsed(character) || character == " " {
-                guessingWord += String(character)
-            } else {
-                guessingWord += "-"
-            }
-        }
+        initGuessingWord()
     }
     
     func typeCharacter(character: Character) {
@@ -42,26 +39,40 @@ class Hangman {
         if isCharacterUsed(character) {
             tries -= 1
         } else {
-            let wordCharacters = Array(word.characters)
-            var guessingWordCharacters = Array(guessingWord.characters)
-            var foundCharacter = false
-            for (index, char) in wordCharacters.enumerate() {
-                if char == character {
-                    guessingWordCharacters[index] = character
-                    foundCharacter = true
-                }
-            }
-            if foundCharacter {
-                guessingWord = String(guessingWordCharacters)
+            checkGuessCharacter(character)
+        }
+    }
+    
+    private func initGuessingWord() {
+        for character in word.characters {
+            if isCharacterUsed(character) || character == space {
+                guessingWord += String(character)
             } else {
-                tries -= 1
-                used += String(character)
+                guessingWord += hiddenCharacter
             }
         }
     }
     
+    private func checkGuessCharacter(character: Character) {
+        let wordCharacters = Array(word.characters)
+        var guessingWordCharacters = Array(guessingWord.characters)
+        var foundCharacter = false
+        for (index, char) in wordCharacters.enumerate() {
+            if char == character {
+                guessingWordCharacters[index] = character
+                foundCharacter = true
+            }
+        }
+        if foundCharacter {
+            guessingWord = String(guessingWordCharacters)
+        } else {
+            tries -= 1
+            usedCharacters += String(character)
+        }
+    }
+    
     private func isCharacterUsed(character: Character) -> Bool {
-        return used.characters.contains(character)
+        return usedCharacters.characters.contains(character)
     }
     
 }
