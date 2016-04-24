@@ -11,7 +11,7 @@ import XCTest
 
 class HangmanTests: XCTestCase {
     
-    let EXPECTED_WORD = "Test Word"
+    let EXPECTED_WORD = "TEST WORD"
     
     var hangman: Hangman!
     
@@ -38,7 +38,12 @@ class HangmanTests: XCTestCase {
     }
     
     func testGuessingWordAfterInit() {
-        XCTAssertEqual("-e-- -o--", hangman.guessingWord)
+        XCTAssertEqual("-E-- -O--", hangman.guessingWord)
+    }
+    
+    func testTypeUsedCharacter() {
+        hangman.typeCharacter("E")
+        XCTAssertEqual(11, hangman.tries)
     }
     
 }

@@ -19,13 +19,23 @@ class Hangman {
     init(word: String) {
         self.word = word
         guessingWord = ""
-        for char in word.characters {
-            if used.containsString(String(char).uppercaseString) || char == " " {
-                guessingWord += String(char)
+        for character in word.characters {
+            if isCharacterInUsed(character) || character == " " {
+                guessingWord += String(character)
             } else {
                 guessingWord += "-"
             }
         }
+    }
+    
+    func typeCharacter(character: Character) {
+        if isCharacterInUsed(character) {
+            tries -= 1
+        }
+    }
+    
+    func isCharacterInUsed(character: Character) -> Bool {
+        return used.characters.contains(character)
     }
     
 }

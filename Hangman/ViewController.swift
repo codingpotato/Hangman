@@ -23,12 +23,9 @@ class ViewController: UIViewController {
         if let word = NSProcessInfo.processInfo().environment["UITestWord"] {
             hangman = Hangman(word: word)
         } else {
-            hangman = Hangman(word: "Guess this word")
+            hangman = Hangman(word: "GUESS THIS WORD")
         }
-        triesLabel.text = "\(hangman.tries)"
-        lengthLabel.text = "\(hangman.word.characters.count)"
-        usedLabel.text = "\(hangman.used)"
-        wordLabel.text = "\(hangman.guessingWord)"
+        updateLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +33,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(button: UIButton) {
+        let buttonText = button.titleLabel!.text!
+        hangman.typeCharacter(buttonText.characters[buttonText.startIndex])
+        updateLabels()
+    }
+    
+    private func updateLabels() {
+        triesLabel.text = "\(hangman.tries)"
+        lengthLabel.text = "\(hangman.word.characters.count)"
+        usedLabel.text = "\(hangman.used)"
+        wordLabel.text = "\(hangman.guessingWord)"
     }
     
 }

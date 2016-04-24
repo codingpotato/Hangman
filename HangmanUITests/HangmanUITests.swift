@@ -16,7 +16,7 @@ class HangmanUITests: XCTestCase {
         super.setUp()
         
         continueAfterFailure = false
-        app.launchEnvironment["UITestWord"] = "Hello World"
+        app.launchEnvironment["UITestWord"] = "HELLO WORLD"
         app.launch()
     }
     
@@ -37,7 +37,12 @@ class HangmanUITests: XCTestCase {
     }
     
     func testWordAfterStart() {
-        XCTAssertEqual("-e--o -o---", app.staticTexts["wordLabel"].label)
+        XCTAssertEqual("-E--O -O---", app.staticTexts["wordLabel"].label)
+    }
+    
+    func testTypeUsedCharacter() {
+        app.buttons["A"].tap()
+        XCTAssertEqual("11", app.staticTexts["triesLabel"].label)
     }
     
 }
