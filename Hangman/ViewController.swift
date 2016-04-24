@@ -14,7 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var lengthLabel: UILabel!
     @IBOutlet weak var usedLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
-    
+
+    private var words = [
+        "GUESS", "METHODOLOGY", "WORLD", "VARIOUS", "SPANISH", "GENERATOR"
+    ]
     private var hangman: Hangman!
     
     override func viewDidLoad() {
@@ -23,7 +26,7 @@ class ViewController: UIViewController {
         if let word = NSProcessInfo.processInfo().environment["UITestWord"] {
             hangman = Hangman(word: word)
         } else {
-            hangman = Hangman(word: "GUESS THIS WORD")
+            hangman = Hangman(word: words[randomFromZeroToNumber(words.count)])
         }
         updateLabels()
     }
@@ -36,6 +39,11 @@ class ViewController: UIViewController {
         let buttonText = button.titleLabel!.text!
         hangman.typeCharacter(buttonText.characters[buttonText.startIndex])
         updateLabels()
+        if (hangman.won) {
+            showAlert(true)
+        } else if (hangman.lose) {
+            showAlert(false)
+        }
     }
     
     private func updateLabels() {
@@ -45,5 +53,18 @@ class ViewController: UIViewController {
         wordLabel.text = "\(hangman.guessingWord)"
     }
     
+    private func showAlert(won: Bool) {
+        let title = won ? "You won!" : "You Lose!"
+        let message = "Word: \(hangman.word)"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    private func randomFromZeroToNumber(number: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(number)))
+    }
+    
 }
-

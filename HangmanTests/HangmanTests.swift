@@ -13,6 +13,7 @@ class HangmanTests: XCTestCase {
     
     let expectedWord = "TEST WORD"
     let allVowel = "AEIOU"
+    let incorrectCharacter: Character = "Z"
     let maxTries = 12
     
     var hangman: Hangman!
@@ -46,18 +47,19 @@ class HangmanTests: XCTestCase {
     func testTypeUsedCharacter() {
         hangman.typeCharacter("E")
         XCTAssertEqual(maxTries - 1, hangman.tries)
+        XCTAssertEqual(allVowel, hangman.used)
     }
     
     func testTypeCorrectCharacter() {
         hangman.typeCharacter("T")
         XCTAssertEqual("TE-T -O--", hangman.guessingWord)
+        XCTAssertEqual(allVowel, hangman.used)
     }
     
     func testTypeIncorrectCharacter() {
-        let incorrectCharacter = "Z"
-        hangman.typeCharacter(incorrectCharacter[incorrectCharacter.startIndex])
+        hangman.typeCharacter(incorrectCharacter)
         XCTAssertEqual(maxTries - 1, hangman.tries)
-        XCTAssertEqual(allVowel + incorrectCharacter, hangman.used)
+        XCTAssertEqual(allVowel + String(incorrectCharacter), hangman.used)
     }
     
     func testWin() {
@@ -71,7 +73,7 @@ class HangmanTests: XCTestCase {
     
     func testLose() {
         for _ in 0..<maxTries {
-            hangman.typeCharacter("M")
+            hangman.typeCharacter(incorrectCharacter)
         }
         XCTAssert(hangman.lose)
     }
