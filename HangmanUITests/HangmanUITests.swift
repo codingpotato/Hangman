@@ -16,7 +16,10 @@ class HangmanUITests: XCTestCase {
     let wordLabelName = "wordLabel"
     let allVowel = "AEIOU"
     let word = "HELLO WORLD"
+    let initialGuessingWord = "-E--O -O---"
     let incorrectCharacter = "Z"
+    let wonCharacters = "HLWRD"
+    let wonAlertTitle = "You won!"
     
     let maxTries = 12
     
@@ -47,7 +50,7 @@ class HangmanUITests: XCTestCase {
     }
     
     func testWordAfterStart() {
-        XCTAssertEqual("-E--O -O---", app.staticTexts[wordLabelName].label)
+        XCTAssertEqual(initialGuessingWord, app.staticTexts[wordLabelName].label)
     }
     
     func testTypeUsedCharacter() {
@@ -67,13 +70,11 @@ class HangmanUITests: XCTestCase {
     }
     
     func testWin() {
-        app.buttons["H"].tap()
-        app.buttons["L"].tap()
-        app.buttons["W"].tap()
-        app.buttons["R"].tap()
-        app.buttons["D"].tap()
-        XCTAssertEqual(word, app.staticTexts[wordLabelName].label)        
-        XCTAssert(app.alerts["You won!"].exists)
+        for character in wonCharacters.characters {
+            app.buttons[String(character)].tap()
+        }
+        XCTAssertEqual(word, app.staticTexts[wordLabelName].label)
+        XCTAssert(app.alerts[wonAlertTitle].exists)
     }
     
     func testLose() {
@@ -82,6 +83,14 @@ class HangmanUITests: XCTestCase {
         }
         XCTAssertEqual("0", app.staticTexts[triesLabelName].label)
         XCTAssert(app.alerts["You Lose!"].exists)
+    }
+    
+    func testRestart() {
+        for character in wonCharacters.characters {
+            app.buttons[String(character)].tap()
+        }
+        app.alerts[wonAlertTitle].buttons["OK"].tap()
+        XCTAssertEqual(initialGuessingWord, app.staticTexts[wordLabelName].label)
     }
     
 }

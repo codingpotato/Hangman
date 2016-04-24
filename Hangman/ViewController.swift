@@ -22,13 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let word = NSProcessInfo.processInfo().environment["UITestWord"] {
-            hangman = Hangman(word: word)
-        } else {
-            hangman = Hangman(word: words[randomFromZeroToNumber(words.count)])
-        }
-        updateLabels()
+        start()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +40,15 @@ class ViewController: UIViewController {
         }
     }
     
+    private func start() {
+        if let word = NSProcessInfo.processInfo().environment["UITestWord"] {
+            hangman = Hangman(word: word)
+        } else {
+            hangman = Hangman(word: words[randomFromZeroToNumber(words.count)])
+        }
+        updateLabels()
+    }
+    
     private func updateLabels() {
         triesLabel.text = "\(hangman.tries)"
         lengthLabel.text = "\(hangman.word.characters.count)"
@@ -59,6 +62,7 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
             self.dismissViewControllerAnimated(true, completion: nil)
+            self.start()
         }))
         presentViewController(alertController, animated: true, completion: nil)
     }
