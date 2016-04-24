@@ -58,4 +58,11 @@ class HangmanUITests: XCTestCase {
         XCTAssertEqual("-ELLO -O-L-", app.staticTexts[wordLabelName].label)
     }
     
+    func testTypeIncorrectCharacter() {
+        let incorrectCharacter = "Z"
+        app.buttons[incorrectCharacter].tap()
+        XCTAssertEqual("\(maxTries - 1)", app.staticTexts[triesLabelName].label)
+        XCTAssertEqual(allVowel + incorrectCharacter, app.staticTexts[usedLabelName].label)
+    }
+    
 }

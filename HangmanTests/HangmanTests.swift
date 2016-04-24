@@ -11,14 +11,16 @@ import XCTest
 
 class HangmanTests: XCTestCase {
     
-    let EXPECTED_WORD = "TEST WORD"
+    let expectedWord = "TEST WORD"
+    let allVowel = "AEIOU"
+    let maxTries = 12
     
     var hangman: Hangman!
     
     override func setUp() {
         super.setUp()
 
-        hangman = Hangman(word: EXPECTED_WORD)
+        hangman = Hangman(word: expectedWord)
     }
     
     override func tearDown() {
@@ -26,15 +28,15 @@ class HangmanTests: XCTestCase {
     }
     
     func testTriesAfterInit() {
-        XCTAssertEqual(12, hangman.tries)
+        XCTAssertEqual(maxTries, hangman.tries)
     }
     
     func testUsedAfterInit() {
-        XCTAssertEqual("AEIOU", hangman.used)
+        XCTAssertEqual(allVowel, hangman.used)
     }
     
     func testWordAfterInit() {
-        XCTAssertEqual(EXPECTED_WORD, hangman.word)
+        XCTAssertEqual(expectedWord, hangman.word)
     }
     
     func testGuessingWordAfterInit() {
@@ -43,12 +45,19 @@ class HangmanTests: XCTestCase {
     
     func testTypeUsedCharacter() {
         hangman.typeCharacter("E")
-        XCTAssertEqual(11, hangman.tries)
+        XCTAssertEqual(maxTries - 1, hangman.tries)
     }
     
     func testTypeCorrectCharacter() {
         hangman.typeCharacter("T")
         XCTAssertEqual("TE-T -O--", hangman.guessingWord)
+    }
+    
+    func testTypeIncorrectCharacter() {
+        let incorrectCharacter = "Z"
+        hangman.typeCharacter(incorrectCharacter[incorrectCharacter.startIndex])
+        XCTAssertEqual(maxTries - 1, hangman.tries)
+        XCTAssertEqual(allVowel + incorrectCharacter, hangman.used)
     }
     
 }
