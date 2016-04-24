@@ -12,6 +12,7 @@ class Hangman {
     
     var tries = 12
     var word = ""
+    var used = "AEIOU"
     
     init(word: String) {
         self.word = word

@@ -32,4 +32,8 @@ class HangmanUITests: XCTestCase {
         XCTAssertEqual("11", app.staticTexts["lengthLabel"].label)
     }
     
+    func testUsedAfterStart() {
+        XCTAssertEqual("AEIOU", app.staticTexts["usedLabel"].label)
+    }
+    
 }
